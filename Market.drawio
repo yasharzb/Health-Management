@@ -1,1 +1,31 @@
-<mxfile host="app.diagrams.net" modified="2020-10-29T16:10:42.866Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36" version="13.8.7" etag="0l8inwhQYRJoN0JOvLse" type="github"><diagram id="B7XgL3pODUn24mQnfjd7">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2020-10-29T16:16:03.980Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36" etag="aIguogY6WJn4zGqe3q2S" version="13.8.7" type="github">
+  <diagram id="B7XgL3pODUn24mQnfjd7" name="Page-1">
+    <mxGraphModel dx="1038" dy="580" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3wkuOAd4J-libN-LxBJQ-1" value="User" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=110;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;swimlaneLine=0;" vertex="1" parent="1">
+          <mxGeometry x="200" y="190" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="3wkuOAd4J-libN-LxBJQ-3" value="Clothing" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=110;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;swimlaneLine=0;" vertex="1" parent="1">
+          <mxGeometry x="420" y="190" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="3wkuOAd4J-libN-LxBJQ-4" value="Cart" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=110;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;swimlaneLine=0;" vertex="1" parent="1">
+          <mxGeometry x="630" y="190" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="3wkuOAd4J-libN-LxBJQ-5" value="Order" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=110;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;swimlaneLine=0;" vertex="1" parent="1">
+          <mxGeometry x="200" y="350" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="3wkuOAd4J-libN-LxBJQ-6" value="Driver" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=110;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;swimlaneLine=0;" vertex="1" parent="1">
+          <mxGeometry x="420" y="350" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="3wkuOAd4J-libN-LxBJQ-7" value="Schedule" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=110;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;swimlaneLine=0;" vertex="1" parent="1">
+          <mxGeometry x="630" y="350" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="3wkuOAd4J-libN-LxBJQ-8" value="Comment" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=110;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;swimlaneLine=0;" vertex="1" parent="1">
+          <mxGeometry x="200" y="500" width="160" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
