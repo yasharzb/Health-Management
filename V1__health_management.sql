@@ -1,5 +1,5 @@
-# DROP DATABASE IF EXISTS health_management;
-# CREATE DATABASE health_management;
+DROP DATABASE IF EXISTS health_management;
+CREATE DATABASE health_management;
 USE health_management;
 CREATE TABLE doctor
 (
