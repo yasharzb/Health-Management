@@ -1,95 +1,126 @@
-CREATE TABLE `doctor`
+DROP DATABASE IF EXISTS health_management;
+CREATE DATABASE health_management;
+USE health_management;
+CREATE TABLE doctor
 (
-    `name`       varchar(255) NOT NULL,
-    `last_name`  varchar(255) NOT NULL,
-    `id`         varchar(255) NOT NULL,
-    `speciality` varchar(255) NOT NULL,
-    `experience` int DEFAULT NULL,
-    PRIMARY KEY (`id`)
+    name       varchar(255) NOT NULL,
+    last_name  varchar(255) NOT NULL,
+    id         varchar(255) NOT NULL,
+    speciality varchar(255) NOT NULL,
+    experience int DEFAULT NULL,
+    PRIMARY KEY (id)
 );
-CREATE TABLE `patient`
+CREATE TABLE patient
 (
-    `name`       varchar(255) NOT NULL,
-    `last_name`  varchar(255) NOT NULL,
-    `id`         varchar(255) NOT NULL,
-    `address`    varchar(255) NOT NULL,
-    `password`   varchar(255) NOT NULL,
-    `doctor_id`  varchar(255) NOT NULL,
-    `birth_date` date         NOT NULL,
-    PRIMARY KEY (`id`),
-    FOREIGN KEY (`doctor_id`) REFERENCES doctor (`id`)
+    name       varchar(255) NOT NULL,
+    last_name  varchar(255) NOT NULL,
+    id         varchar(255) NOT NULL,
+    address    varchar(255) NOT NULL,
+    password   varchar(255) NOT NULL,
+    doctor_id  varchar(255) NOT NULL,
+    birth_date date         NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (doctor_id) REFERENCES doctor (id)
 );
-CREATE TABLE `prescription`
+CREATE TABLE prescription
 (
-    `id`         bigint       NOT NULL,
-    `date`       date         NOT NULL,
-    `doctor_id`  varchar(255) NOT NULL,
-    `patient_id` varchar(255) NOT NULL,
-    PRIMARY KEY (`id`),
-    FOREIGN KEY (`doctor_id`) REFERENCES doctor (id),
-    FOREIGN KEY (`patient_id`) REFERENCES patient (id)
+    id         bigint       NOT NULL,
+    date       date         NOT NULL,
+    doctor_id  varchar(255) NOT NULL,
+    patient_id varchar(255) NOT NULL,
+    PRIMARY KEY (id, patient_id),
+    FOREIGN KEY (doctor_id) REFERENCES doctor (id),
+    FOREIGN KEY (patient_id) REFERENCES patient (id)
 );
-USE HealthManagment;
-CREATE TABLE pharmaceutical_companies (
-    name CHAR(15) PRIMARY KEY,
+CREATE TABLE pharmaceutical_companies
+(
+    name         CHAR(15) PRIMARY KEY,
     phone_number CHAR(13)
 );
 
-CREATE TABLE contracts (
-    id CHAR(15) PRIMARY KEY,
+CREATE TABLE pharmacies
+(
+    id           CHAR(15) PRIMARY KEY,
+    name         CHAR(20),
+    address      TEXT,
+    phone_number CHAR(13)
+);
+
+CREATE TABLE contracts
+(
+    id               CHAR(15) PRIMARY KEY,
     contraction_date DATE,
-    end_date DATE,
-    text TEXT
+    end_date         DATE,
+    text             TEXT,
+    company_id       CHAR(15) NOT NULL,
+    pharmacy_id      CHAR(15) NOT NULL,
+    FOREIGN KEY (company_id) REFERENCES pharmaceutical_companies (name),
+    FOREIGN KEY (pharmacy_id) REFERENCES pharmacies (id)
 );
 
-CREATE TABLE pharmacies (
-    id CHAR(15) PRIMARY KEY,
-    name CHAR(20),
-    address TEXT,
-    phone_number CHAR(13)
-);
-
-CREATE TABLE pharmaceutical_contracts (
+CREATE TABLE drug
+(
     pharmaceutical_company_name CHAR(15),
-    contract_id CHAR(15)
+    drug_trade_name             CHAR(20),
+    formula                     TEXT,
+    PRIMARY KEY (pharmaceutical_company_name, drug_trade_name),
+    FOREIGN KEY (pharmaceutical_company_name) REFERENCES pharmaceutical_companies (name) ON DELETE CASCADE
 );
 
-CREATE TABLE pharmacy_contracts  (
-    pharmacy_id CHAR(15),
-    contract_id CHAR(15)
-);
-
-CREATE TABLE drug (
+CREATE TABLE sell
+(
+    pharmacy_id                 CHAR(15),
+    price                       INTEGER,
     pharmaceutical_company_name CHAR(15),
-    drug_trade_name CHAR(20),
-    formula TEXT,
-    PRIMARY KEY (pharmaceutical_company_name , drug_trade_name),
-    FOREIGN KEY (pharmaceutical_company_name) REFERENCES pharmaceutical_companies (name) ON DELETE  CASCADE
+    drug_trade_name             CHAR(20),
+    FOREIGN KEY (pharmacy_id) REFERENCES pharmacies (id),
+    FOREIGN KEY (pharmaceutical_company_name, drug_trade_name) REFERENCES drug (pharmaceutical_company_name, drug_trade_name)
 );
 
-CREATE TABLE sell (
-    pharmacy_id CHAR(15),
-    price INTEGER,
+CREATE TABLE prescription_drug
+(
+    prescription_id             bigint       NOT NULL,
+    patient_id                  varchar(255) NOT NULL,
+    count                       int,
     pharmaceutical_company_name CHAR(15),
-    drug_trade_name CHAR(20)
+    drug_trade_name             CHAR(20),
+    FOREIGN KEY (prescription_id, patient_id) REFERENCES prescription (id, patient_id),
+    FOREIGN KEY (pharmaceutical_company_name, drug_trade_name) REFERENCES drug (pharmaceutical_company_name, drug_trade_name)
 );
 
-INSERT INTO pharmacies VALUES ('alef_1234', 'jafars drug store', 'Sadr, Hemat, folan', '+982122758395');
-INSERT INTO pharmaceutical_companies VALUES ('khafan_tolid', '+9877262435');
-INSERT INTO contracts VALUES ('vav2222', '2020-12-11', '2024-12-11', 'in daroo haro befrooshid va sood haye faravan bebarid');
-INSERT INTO pharmacy_contracts VALUES ('alef_1234', 'vav2222');
-INSERT INTO pharmaceutical_contracts VALUES ('khafan_tolid', 'vav2222');
-INSERT INTO drug VALUES ('khafan_tolid', 'water', 'H2O');
-INSERT INTO sell VALUES ('alef_1234', 100000, 'khafan_tolid', 'water')
-
-SELECT  * FROM pharmacies;
-SELECT  * FROM pharmaceutical_companies;
-SELECT  * FROM contracts;
-SELECT  * FROM pharmacy_contracts;
-SELECT  * FROM pharmaceutical_contracts;
-SELECT  * FROM drug;
-SELECT  * FROM sell;
-
-DELETE FROM pharmaceutical_companies WHERE name='khafan_tolid';
-SELECT  * FROM drug;
+# INSERT INTO pharmacies
+# VALUES ('alef_1234', 'jafars drug store', 'Sadr, Hemat, folan', '+982122758395');
+# INSERT INTO pharmaceutical_companies
+# VALUES ('khafan_tolid', '+9877262435');
+# INSERT INTO contracts
+# VALUES ('vav2222', '2020-12-11', '2024-12-11', 'in daroo haro befrooshid va sood haye faravan bebarid');
+# INSERT INTO pharmacy_contracts
+# VALUES ('alef_1234', 'vav2222');
+# INSERT INTO pharmaceutical_contracts
+# VALUES ('khafan_tolid', 'vav2222');
+# INSERT INTO drug
+# VALUES ('khafan_tolid', 'water', 'H2O');
+# INSERT INTO sell
+# VALUES ('alef_1234', 100000, 'khafan_tolid', 'water')
+#
+# SELECT *
+# FROM pharmacies;
+# SELECT *
+# FROM pharmaceutical_companies;
+# SELECT *
+# FROM contracts;
+# SELECT *
+# FROM pharmacy_contracts;
+# SELECT *
+# FROM pharmaceutical_contracts;
+# SELECT *
+# FROM drug;
+# SELECT *
+# FROM sell;
+#
+# DELETE
+# FROM pharmaceutical_companies
+# WHERE name = 'khafan_tolid';
+# SELECT *
+# FROM drug;
 
