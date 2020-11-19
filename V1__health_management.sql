@@ -15,7 +15,7 @@ CREATE TABLE patient
     name       varchar(255) NOT NULL,
     last_name  varchar(255) NOT NULL,
     id         varchar(255) NOT NULL,
-    address    varchar(255) NOT NULL,
+    address    TEXT DEFAULT NULL,
     password   varchar(255) NOT NULL,
     doctor_id  varchar(255) NOT NULL,
     birth_date date         NOT NULL,
@@ -88,18 +88,30 @@ CREATE TABLE prescription_drug
     FOREIGN KEY (pharmaceutical_company_name, drug_trade_name) REFERENCES drug (pharmaceutical_company_name, drug_trade_name)
 );
 
-# INSERT INTO pharmacies
-# VALUES ('alef_1234', 'jafars drug store', 'Sadr, Hemat, folan', '+982122758395');
-# INSERT INTO pharmaceutical_companies
-# VALUES ('khafan_tolid', '+9877262435');
+INSERT INTO doctor
+VALUES ('yashar', 'yashar', '0123456789', 'Heart specialist', 5);
+INSERT INTO patient
+VALUES ('sadeq', 'sadeq', '9876543210', 'Khuneye aqa sadeq', '1234', '0123456789', '1999-12-17');
+INSERT INTO prescription
+VALUES (100, '2020-11-19', '0123456789', '9876543210');
+INSERT INTO pharmacies
+VALUES ('alef_1234', 'jafars drug store', 'Sadr, Hemat, folan', '+982122758395');
+INSERT INTO pharmaceutical_companies
+VALUES ('khafan_tolid', '+9877262435');
+INSERT INTO drug
+VALUES ('khafan_tolid', 'water', 'H2O');
+INSERT INTO drug
+VALUES ('khafan_tolid', 'roghan banafshe', 'Unknown');
+INSERT INTO prescription_drug
+VALUES (100,'9876543210',2,'khafan_tolid','water');
+INSERT INTO prescription_drug
+VALUES (100,'9876543210',2,'khafan_tolid','roghan banafshe');
 # INSERT INTO contracts
 # VALUES ('vav2222', '2020-12-11', '2024-12-11', 'in daroo haro befrooshid va sood haye faravan bebarid');
 # INSERT INTO pharmacy_contracts
 # VALUES ('alef_1234', 'vav2222');
 # INSERT INTO pharmaceutical_contracts
 # VALUES ('khafan_tolid', 'vav2222');
-# INSERT INTO drug
-# VALUES ('khafan_tolid', 'water', 'H2O');
 # INSERT INTO sell
 # VALUES ('alef_1234', 100000, 'khafan_tolid', 'water')
 #
