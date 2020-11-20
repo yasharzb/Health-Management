@@ -64,7 +64,7 @@ CREATE TABLE drug
     drug_trade_name             varchar(255) NOT NULL,
     formula                     TEXT         NOT NULL,
     PRIMARY KEY (pharmaceutical_company_name, drug_trade_name),
-    FOREIGN KEY (pharmaceutical_company_name) REFERENCES pharmaceutical_companies (name) ON DELETE CASCADE
+    FOREIGN KEY (pharmaceutical_company_name) REFERENCES pharmaceutical_companies (name)
 );
 
 CREATE TABLE sell
