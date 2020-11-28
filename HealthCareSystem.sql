@@ -135,18 +135,18 @@ VALUES ('fa', 'fas', 'fadsfas', 'iran', 1999, 'nope', 'di');
 INSERT INTO patient
 VALUES ('pate', 'pete', 'petian', 'usa', 1999, 'nope', 'docid');
 INSERT INTO prescription
-VALUES ('p', '20201101', 'docid', '0012345678');
+VALUES ('p', '13990710', 'docid', '0012345678');
 INSERT INTO prescription
-VALUES ('p2', '20201101', 'docid', '0012345678');
+VALUES ('p2', '13990710', 'docid', '0012345678');
 INSERT INTO prescription
-VALUES ('p3', '20201101', 'docid', 'pate');
+VALUES ('p3', '13990710', 'docid', 'pate');
 INSERT INTO prescription
-VALUES ('p4', '20201101', 'docid', 'pate');
+VALUES ('p4', '13990710', 'docid', 'pate');
 INSERT INTO prescription
 VALUES ('p5', '20101011', 'docid', '0012345678');
 
 INSERT INTO prescription
-VALUES ('p6', '20201101', 'docid', 'pate');
+VALUES ('p6', '13990710', 'docid', 'pate');
 INSERT INTO prescription
 VALUES ('p8', '20101220', 'di', 'pate');
 
@@ -224,7 +224,7 @@ WHERE DoctorId in (
     WHERE doctor.FirstName = 'doc'
       AND doctor.LastName = 'doctor'
 )
-  AND PrescriptionDate = '2020-11-01'
+  AND PrescriptionDate = '1399-07-10'
   AND (
           SELECT SUM(Quantity)
           FROM drug_prescription
