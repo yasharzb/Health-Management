@@ -135,18 +135,18 @@ VALUES ('fa', 'fas', 'fadsfas', 'iran', 1999, 'nope', 'di');
 INSERT INTO patient
 VALUES ('pate', 'pete', 'petian', 'usa', 1999, 'nope', 'docid');
 INSERT INTO prescription
-VALUES ('p', '20101010', 'docid', '0012345678');
+VALUES ('p', '20201101', 'docid', '0012345678');
 INSERT INTO prescription
-VALUES ('p2', '20101010', 'docid', '0012345678');
+VALUES ('p2', '20201101', 'docid', '0012345678');
 INSERT INTO prescription
-VALUES ('p3', '20101010', 'docid', 'pate');
+VALUES ('p3', '20201101', 'docid', 'pate');
 INSERT INTO prescription
-VALUES ('p4', '20101010', 'docid', 'pate');
+VALUES ('p4', '20201101', 'docid', 'pate');
 INSERT INTO prescription
 VALUES ('p5', '20101011', 'docid', '0012345678');
 
 INSERT INTO prescription
-VALUES ('p6', '20101010', 'docid', 'pate');
+VALUES ('p6', '20201101', 'docid', 'pate');
 INSERT INTO prescription
 VALUES ('p8', '20101220', 'di', 'pate');
 
@@ -224,7 +224,7 @@ WHERE DoctorId in (
     WHERE doctor.FirstName = 'doc'
       AND doctor.LastName = 'doctor'
 )
-  AND PrescriptionDate = '2010-10-10'
+  AND PrescriptionDate = '2020-11-01'
   AND (
           SELECT SUM(Quantity)
           FROM drug_prescription
@@ -234,7 +234,7 @@ WHERE DoctorId in (
 
 #Q5
 # SELECT cnt FROM (SELECT CompanyName, COUNT(contract.CompanyName) AS cnt FROM contract GROUP BY CompanyName) as MX ORDER BY cnt DESC LIMIT 1;
-SELECT *
+SELECT company.Name
 FROM company
 WHERE (
           SELECT COUNT(contract.CompanyName)
@@ -244,7 +244,8 @@ WHERE (
       (SELECT cnt
        FROM (SELECT CompanyName, COUNT(contract.CompanyName) AS cnt FROM contract GROUP BY CompanyName) as MX
        ORDER BY cnt DESC
-       LIMIT 1);
+       LIMIT 1) AND company.Name IN (SELECT drug.CompanyName FROM drug WHERE drug.Formula = 'CxHyOzHw');
+;
 
 # Q6
 SELECT *
