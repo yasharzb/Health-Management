@@ -121,9 +121,9 @@ VALUES ('water', 'h20', 'comp');
 INSERT INTO drug
 VALUES ('med', 'idk', 'comp');
 INSERT INTO drug
-VALUES ('chizak', 'CxHyOzHw', 'comp2');
+VALUES ('chizak2', 'C1H2O12H15', 'comp2');
 INSERT INTO drug
-VALUES ('chiz', 'CxHyOzHw', 'comp');
+VALUES ('chiz2', 'C1H2O3H4', 'comp');
 INSERT INTO doctor
 VALUES ('docid', 'doc', 'doctor', 'hamechi', 0);
 INSERT INTO doctor
@@ -214,9 +214,7 @@ WHERE Id IN (SELECT PharmacyId FROM sale WHERE DrugName = 'med' AND Price < 100)
   and Address LIKE 'Tehran%';
 
 # Q4
-
 SELECT COUNT(DISTINCT PatientId)
-
 FROM prescription
 WHERE DoctorId in (
     SELECT doctor.NationalID
@@ -233,7 +231,6 @@ WHERE DoctorId in (
             AND PatientId = prescription.PatientId) > 10;
 
 #Q5
-# SELECT cnt FROM (SELECT CompanyName, COUNT(contract.CompanyName) AS cnt FROM contract GROUP BY CompanyName) as MX ORDER BY cnt DESC LIMIT 1;
 SELECT company.Name
 FROM company
 WHERE (
@@ -244,8 +241,8 @@ WHERE (
       (SELECT cnt
        FROM (SELECT CompanyName, COUNT(contract.CompanyName) AS cnt FROM contract GROUP BY CompanyName) as MX
        ORDER BY cnt DESC
-       LIMIT 1) AND company.Name IN (SELECT drug.CompanyName FROM drug WHERE drug.Formula = 'CxHyOzHw');
-;
+       LIMIT 1) AND company.Name IN (SELECT drug.CompanyName FROM drug WHERE drug.Formula REGEXP  'C[0-9]*H[0-9]*O[0-9]*H[0-9]*');;
+
 
 # Q6
 SELECT *
