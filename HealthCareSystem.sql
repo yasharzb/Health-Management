@@ -255,3 +255,29 @@ WHERE NationalID IN (
              WHERE PatientId = '0012345678'
              GROUP BY DoctorId) AS TMP
     WHERE cnt > 2);
+
+
+# View a
+CREATE VIEW prescription_details
+    AS SELECT * FROM prescription;
+
+CREATE VIEW prescription_drugs
+    AS  SELECT * FROM drug_prescription;
+# View b
+CREATE VIEW drug_history
+    AS SELECT PatientId, DrugName, SUM(Quantity) FROM drug_prescription GROUP BY DrugName;
+
+# View c
+CREATE VIEW prices
+    AS SELECT Price, DrugName, PharmacyId FROM sale;
+
+#####
+# P 3
+# Query a
+SELECT DISTINCT DoctorId FROM prescription_details WHERE PatientId='123';
+
+# Query b
+SELECT DrugName, Price FROM prices WHERE PharmacyId='123';
+
+
+
